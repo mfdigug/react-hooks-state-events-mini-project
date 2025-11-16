@@ -19,19 +19,15 @@ function App() {
   const [taskList, setTaskList] = useState(tasks)
 
   function handleDeleteTask(id){
-    console.log(id)
-
     const newTaskList = taskList.filter(task => task.id !== id)
     setTaskList(newTaskList)
-
-
   }
 
 
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter />
+      <CategoryFilter categories={CATEGORIES}/>
       <NewTaskForm />
       <TaskList taskList={taskList} handleDeleteTask={handleDeleteTask}/>
     </div>
