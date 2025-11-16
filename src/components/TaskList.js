@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import Task from './Task';
 
-function TaskList({ taskList, handleDeleteTask }) {
+function TaskList({ taskList, handleDeleteTask, filterBy }) {
 
-const tasksToDisplay = taskList.map((task) => {
+  const tasksToDisplay = taskList.filter((task) => {
+    if (filterBy==="All"){
+      return true;
+    } else {
+      return task.category === filterBy;
+    }
+  })
+
+const displayTasks = tasksToDisplay.map((task) => {
         return <Task
         key={task.id}
         task={task}
@@ -14,7 +22,7 @@ const tasksToDisplay = taskList.map((task) => {
 
   return (
     <div className="tasks">
-      {tasksToDisplay}
+      {displayTasks}
     </div>
   );
 }

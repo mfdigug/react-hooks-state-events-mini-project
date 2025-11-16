@@ -1,10 +1,16 @@
 import React from "react";
 
-function CategoryFilter( {categories} ) {
+function CategoryFilter( {categories, onHandleFilterClick} ) {
+
+function handleFilterClick(id){
+  onHandleFilterClick(id)
+}
 
 const  categoryButtons = categories.map((category) => {
         return (
-          <button key={category}>
+          <button 
+          key={category} 
+          onClick={() => handleFilterClick(category)}>
             {category}
           </button>
         )

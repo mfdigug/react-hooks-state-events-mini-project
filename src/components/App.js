@@ -16,20 +16,27 @@ function App() {
     }
   });
 
-  const [taskList, setTaskList] = useState(tasks)
-
+  const [taskList, setTaskList] = useState(tasks);
+  const [filterBy, setFilterBy] = useState("All");
+  
   function handleDeleteTask(id){
     const newTaskList = taskList.filter(task => task.id !== id)
     setTaskList(newTaskList)
   }
 
+  function onHandleFilterClick(id){
+    const newFilter = id;
+    setFilterBy(newFilter)
+  }
+
+
 
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter categories={CATEGORIES}/>
+      <CategoryFilter categories={CATEGORIES} onHandleFilterClick={onHandleFilterClick}/>
       <NewTaskForm />
-      <TaskList taskList={taskList} handleDeleteTask={handleDeleteTask}/>
+      <TaskList taskList={taskList} handleDeleteTask={handleDeleteTask} filterBy={filterBy}/>
     </div>
   );
 }
