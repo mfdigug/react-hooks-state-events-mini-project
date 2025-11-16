@@ -1,16 +1,20 @@
-import React from "react";
-import { v4 as uuid } from 'uuid';
-import Task from './Task'
+import React, { useState } from "react";
+import Task from './Task';
 
-function TaskList({ TASKS }) {
-  
+function TaskList({ taskList, handleDeleteTask }) {
+
+const tasksToDisplay = taskList.map((task) => {
+        return <Task
+        key={task.id}
+        task={task}
+        onHandleDeleteTask={handleDeleteTask}
+        />
+      })
+
+
   return (
     <div className="tasks">
-      {TASKS.map((task) => {
-        return(
-          <Task key={uuid()} text={task.text} category={task.category} />    
-        )
-      })}
+      {tasksToDisplay}
     </div>
   );
 }
