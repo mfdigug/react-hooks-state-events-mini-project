@@ -29,13 +29,18 @@ function App() {
     setFilterBy(newFilter)
   }
 
+  function handleAddTask(newTask){
+    const newTaskList = [...taskList, newTask]
+    setTaskList(newTaskList)
+  }
+
 
 
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter categories={CATEGORIES} onHandleFilterClick={onHandleFilterClick}/>
-      <NewTaskForm />
+      <NewTaskForm categories={CATEGORIES} onTaskFormSubmit={handleAddTask}/>
       <TaskList taskList={taskList} handleDeleteTask={handleDeleteTask} filterBy={filterBy}/>
     </div>
   );
